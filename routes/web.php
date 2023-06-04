@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,36 @@ Route::get('/review', 'App\Http\Controllers\MainController@review')->name('revie
 Route::post('/review/check', 'App\Http\Controllers\MainController@review_check');
 
 Route::delete('/review/{id}', 'App\Http\Controllers\MainController@destroy')->name('reviews_destroy');
+
+//Route::view('/', 'index');
+
+Route::name('user.')->group(function(){
+    Route::view( '/private', 'private')->middleware( 'auth')->name('private');
+
+    Route::get('/login', function (){
+        if(Auth::check()){
+            return redirect(route('user.private'));
+        }
+        return view('login');
+    })->name('login');
+
+    Route::post('/login', [\App\Http\Controllers\LoginController::class, 'login']);
+
+    Route::get('/logout', function(){
+        Auth::logout();
+        return redirect( '/');
+    })->name('logout');
+
+    Route::get('/registration', function (){
+        if(Auth::check()){
+            return redirect(route('user.private'));
+        }
+        return view('registration');
+    })->name('registration');
+
+    Route::post('/registration', [\App\Http\Controllers\RegisterController::class, 'save']);
+
+});
 
 //Route::get('/user/{ID}/{name}', function ($ID, $name) {
 //    return 'ID: '. $ID.'. Name: '.$name;
