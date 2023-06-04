@@ -12,10 +12,20 @@
     <title>Document</title>
 </head>
 <body>
-<h>This is private page</h>
-</body>
+
+<h1 class="text-center mt-5">This is private page</h1>
+
 <br>
-<a class="me-3 py-2 link-body-emphasis text-white" href="/logout">logout</a><br>
-<a class="me-3 py-2 link-body-emphasis text-white" href="/inner">inner</a>
+
+<div class="d-flex justify-content-center">
+    <a class="btn btn-primary me-3" href="/logout">Сменить аккаунт</a>
+    @can('view-admin-panel')
+    <a class="btn btn-danger me-3" href="/inner">Панель администратора</a>
+
+    @endcan
+
+
+</div>
+</body>
 </html>
 

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'App\Http\Controllers\MainController@home');
 
-Route::get('/articles', 'App\Http\Controllers\MainController@articles');
+Route::get('/articles', 'App\Http\Controllers\MainController@articles')->name('articles');
 
 Route::get('/about', 'App\Http\Controllers\MainController@about');
 
