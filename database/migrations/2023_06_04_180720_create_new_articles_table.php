@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('email', 255)->nullable(false)->unique('email');
-            $table->string('password', 255)->nullable(false);
-            $table->string('remember_token', 100)->nullable(true);
+        Schema::create('articles', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->decimal('price', 8, 2)->nullable()->default(0.00);;
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+//        Schema::dropIfExists('new_articles');
     }
 };

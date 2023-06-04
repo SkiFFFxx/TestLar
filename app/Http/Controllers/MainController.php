@@ -48,7 +48,7 @@ use Illuminate\Http\Request;
     }
 
         public function articles() {
-            return view('articles');
+        return view('articles');
         }
 
 
