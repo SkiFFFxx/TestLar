@@ -1,5 +1,6 @@
 <?php
 
+//use Illuminate\Auth\Access\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'App\Http\Controllers\MainController@home');
 
+Route::get('/articles', 'App\Http\Controllers\MainController@articles')->name('articles');
+
 Route::get('/about', 'App\Http\Controllers\MainController@about');
 
 Route::get('/review', 'App\Http\Controllers\MainController@review')->name('review');
@@ -24,7 +27,7 @@ Route::post('/review/check', 'App\Http\Controllers\MainController@review_check')
 
 Route::delete('/review/{id}', 'App\Http\Controllers\MainController@destroy')->name('reviews_destroy');
 
-//Route::view('/', 'index');
+
 
 Route::name('user.')->group(function(){
     Route::view( '/private', 'private')->middleware( 'auth')->name('private');
@@ -49,6 +52,15 @@ Route::name('user.')->group(function(){
         }
         return view('registration');
     })->name('registration');
+
+    //$check_status
+
+    Route::get('/inner', function (){
+        if(Gate::check('view-protected-form')){
+            return view('inner');
+        };
+        return 'Нет авторизации';
+    })->middleware(['auth'])->name('inner');
 
     Route::post('/registration', [\App\Http\Controllers\RegisterController::class, 'save']);
 

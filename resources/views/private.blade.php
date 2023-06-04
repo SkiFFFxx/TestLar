@@ -1,3 +1,7 @@
+@extends('/dry')
+
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,8 +12,20 @@
     <title>Document</title>
 </head>
 <body>
-<h>This is private page</h>
+
+<h1 class="text-center mt-5">This is private page</h1>
+
+<br>
+
+<div class="d-flex justify-content-center">
+    <a class="btn btn-primary me-3" href="/logout">Сменить аккаунт</a>
+    @can('view-admin-panel')
+    <a class="btn btn-danger me-3" href="/inner">Панель администратора</a>
+
+    @endcan
+
+
+</div>
 </body>
-<a class="me-3 py-2 link-body-emphasis text-white" href="/logout">logout</a>
 </html>
 
