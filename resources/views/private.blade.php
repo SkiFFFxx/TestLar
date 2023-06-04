@@ -1,3 +1,7 @@
+@extends('/dry')
+
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,6 +14,8 @@
 <body>
 <h>This is private page</h>
 </body>
-<a class="me-3 py-2 link-body-emphasis text-white" href="/logout">logout</a>
+<br>
+<a class="me-3 py-2 link-body-emphasis text-white" href="/logout">logout</a><br>
+<a class="me-3 py-2 link-body-emphasis text-white" href="/inner">inner</a>
 </html>
 

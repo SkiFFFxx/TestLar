@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
         return view('home');
     }
 
+
     public function about() {
         return view('about');
     }
@@ -45,6 +46,10 @@ use Illuminate\Http\Request;
 
         return redirect()->route('review');
     }
+
+        public function articles() {
+            return view('articles');
+        }
 
 
 }

@@ -34,11 +34,13 @@
                 <h3>{{$el->subject}}</h3>
                 <b>{{$el->email}}</b>
                 <p>{{$el->message}}</p>
-            <form action="{{ route('reviews_destroy', $el->id) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Удалить запись</button>
-            </form>
+                @can('view-protected-form')
+                    <form action="{{ route('reviews_destroy', $el->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Удалить запись</button>
+                     </form>
+                @endcan
         </div>
         @endforeach
     @endif
