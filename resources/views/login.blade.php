@@ -1,20 +1,16 @@
 @extends('/dry')
 
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Вход</title>
-</head>
-<body style="padding: 0 550px;"><br>
-<h1>Вход</h1><br>
+@section('title-block')
+    Login Page
+@endsection
+
+@section('main_content')
+
+<h1 style="padding-left: 250px;" >Вход</h1 ><br>
 
 
-<form method="post" action="{{route('user.login') }} ">
+<form method="post" action="{{route('user.login') }} " style="padding: 0 250px;">
     @csrf
     <input type="email" name="email" id="email" placeholder="Введите email" class="form-control"><br>
     @error('email')
@@ -26,5 +22,4 @@
     @enderror
     <button  type="submit" class="btn btn-success">Войти</button>
 </form><br><br>
-</body>
-</html>
+@endsection
